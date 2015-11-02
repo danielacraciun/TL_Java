@@ -17,10 +17,16 @@ public class ArithmExp extends Exp {
     }
 
     public int eval(Dictionary tbl) {
-        if (op == '+') return (e1.eval(tbl) + e2.eval(tbl));
-        if (op == '-') return (e1.eval(tbl) - e2.eval(tbl));
-        if (op == '*') return (e1.eval(tbl) * e2.eval(tbl));
-        if (op == '/') return (e1.eval(tbl) / e2.eval(tbl));
+        switch (op) {
+            case '+':
+                return (e1.eval(tbl) + e2.eval(tbl));
+            case '-':
+                return (e1.eval(tbl) - e2.eval(tbl));
+            case '*':
+                return (e1.eval(tbl) * e2.eval(tbl));
+            case '/':
+                return (e1.eval(tbl) / e2.eval(tbl));
+        }
         return 0;
     }
 
