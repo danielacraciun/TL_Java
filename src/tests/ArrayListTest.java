@@ -1,7 +1,8 @@
 package tests;
 
-import domain.list.ArrayList;
-import domain.list.List;
+
+import com.danielacraciun.models.list.ArrayList;
+import com.danielacraciun.models.list.List;
 import junit.framework.TestCase;
 
 /**

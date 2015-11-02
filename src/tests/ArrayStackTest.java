@@ -1,7 +1,8 @@
 package tests;
 
-import domain.stack.ArrayStack;
-import domain.stack.Stack;
+
+import com.danielacraciun.models.stack.ArrayStack;
+import com.danielacraciun.models.stack.Stack;
 import junit.framework.TestCase;
 
 /**

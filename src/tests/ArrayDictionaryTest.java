@@ -1,7 +1,7 @@
 package tests;
 
-import domain.dictionary.ArrayDictionary;
-import domain.dictionary.Dictionary;
+import com.danielacraciun.models.dictionary.ArrayDictionary;
+import com.danielacraciun.models.dictionary.Dictionary;
 import junit.framework.TestCase;
 
 /**
