@@ -11,7 +11,7 @@ import com.danielacraciun.models.list.ArrayList;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.prgstate.PrgState;
 import com.danielacraciun.models.stack.ArrayStack;
-import com.danielacraciun.models.stack.Stack;
+import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
 
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.util.Scanner;
 /**
  * Created by dana on 26.10.2015.
  */
-@SuppressWarnings("ALL")
 public class Console {
 
     private Controller ctrl;
@@ -100,7 +99,7 @@ public class Console {
 
     private void addProgram() {
         IStmt prgStmt = addNewStmt();
-        Stack exeStk = new ArrayStack();
+        IStack exeStk = new ArrayStack();
         exeStk.push(prgStmt);
         Dictionary tbl = new ArrayDictionary();
         List out = new ArrayList();

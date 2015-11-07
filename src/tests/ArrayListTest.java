@@ -5,9 +5,6 @@ import com.danielacraciun.models.list.ArrayList;
 import com.danielacraciun.models.list.List;
 import junit.framework.TestCase;
 
-/**
- * Created by dana on 12.10.2015.
- */
 public class ArrayListTest extends TestCase {
 
     private List l;

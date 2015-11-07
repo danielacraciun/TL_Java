@@ -1,21 +1,14 @@
 package com.danielacraciun.models.list;
 
-/**
- * Created by dana on 09.10.2015.
- */
-public class ArrayList implements List {
-    private Object[] elements;
+import java.util.Objects;
+
+public class ArrayList implements List<Integer> {
+    private Integer[] elements;
     private int nrElements;
 
     public ArrayList() {
-        elements = new Object[20];
+        elements = new Integer[20];
         nrElements = 0;
-    }
-
-    private void resize() {
-        Object[] tmp = new Object[nrElements * 2];
-        System.arraycopy(elements, 0, tmp, 0, nrElements);
-        elements = tmp;
     }
 
     @Override
@@ -29,22 +22,20 @@ public class ArrayList implements List {
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(Integer elem) {
         for (int i = 0; i < nrElements; i++)
-            if (elements[i] == o)
+            if (Objects.equals(elements[i], elem))
                 return true;
         return false;
     }
 
     @Override
-    public void add(Object o) {
-        if (elements.length == nrElements)
-            resize();
-        elements[nrElements++] = o;
+    public void add(Integer elem) {
+        elements[nrElements++] = elem;
     }
 
     @Override
-    public Object get(int index) {
+    public Integer get(int index) {
         return elements[index];
     }
 

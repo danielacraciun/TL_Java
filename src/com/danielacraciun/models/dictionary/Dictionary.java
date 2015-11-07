@@ -1,20 +1,16 @@
 package com.danielacraciun.models.dictionary;
 
-/**
- * Created by dana on 10.10.2015.
- */
-
-public interface Dictionary {
+public interface Dictionary<K, V> {
 
     int size();
 
     boolean isEmpty();
 
-    boolean containsKey(Object key);
+    boolean containsKey(K key);
 
-    boolean containsValue(Object value);
+    boolean containsValue(V value);
 
-    Object get(Object key);
+    V get(K key);
 
-    void put(Object key, Object value);
+    void put(K key, V value);
 }

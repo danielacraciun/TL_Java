@@ -8,11 +8,11 @@ import com.danielacraciun.models.list.ArrayList;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.prgstate.PrgState;
 import com.danielacraciun.models.stack.ArrayStack;
-import com.danielacraciun.models.stack.Stack;
+import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
 import com.danielacraciun.repository.IRepository;
 import com.danielacraciun.repository.Repository;
-import com.danielacraciun.views.Console;
+//import com.danielacraciun.views.Console;
 
 class Main {
 
@@ -22,8 +22,8 @@ class Main {
 //        Console console = new Console(ctrl);
 //        console.run();
 
-        Stack stk = new ArrayStack();
-        Dictionary d = new ArrayDictionary();
+        IStack<IStmt> stk = new ArrayStack<>();
+        Dictionary<String, Integer> d = new ArrayDictionary<>();
         List l = new ArrayList();
 
 //        IStmt prg1 = new CmpStmt(new AssignStmt("a", new ConstExp(0)),

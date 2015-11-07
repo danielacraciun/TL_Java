@@ -1,80 +1,51 @@
 package com.danielacraciun.models.dictionary;
 
-/**
- * Created by dana on 10.10.2015.
- */
-public class ArrayDictionary implements Dictionary {
+import java.util.*;
 
-    private Object[] keys;
-    private Object[] values;
-    private int nrElements;
+public class ArrayDictionary<K, V> implements Dictionary<K, V> {
+
+    TreeMap<K, V> elements;
 
     public ArrayDictionary() {
-        keys = new Object[20];
-        values = new Object[20];
-        nrElements = 0;
-    }
-
-    private void resize() {
-        Object[] tmp1 = new Object[nrElements * 2];
-        Object[] tmp2 = new Object[nrElements * 2];
-        System.arraycopy(keys, 0, tmp1, 0, nrElements);
-        System.arraycopy(values, 0, tmp2, 0, nrElements);
-        keys = tmp1;
-        values = tmp2;
+        elements = new TreeMap<K, V>();
     }
 
     @Override
     public int size() {
-        return nrElements;
+        return elements.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return nrElements == 0;
+        return elements.size() == 0;
     }
 
     @Override
-    public boolean containsKey(Object key) {
-        for (int i = 0; i < nrElements; i++) {
-            if (keys[i].equals(key))
-                return true;
-        }
-        return false;
+    public boolean containsKey(K key) {
+        return elements.containsKey(key);
     }
 
     @Override
-    public boolean containsValue(Object value) {
-        for (int i = 0; i < nrElements; i++) {
-            if (values[i] == value)
-                return true;
-        }
-        return false;
+    public boolean containsValue(V value) {
+        return elements.containsValue(value);
     }
 
     @Override
-    public Object get(Object key) {
-        for (int i = 0; i < nrElements; i++) {
-            if (keys[i].equals(key))
-                return values[i];
-        }
-        return null;
+    public V get(K key) {
+        return elements.get(key);
     }
 
     @Override
-    public void put(Object key, Object value) {
-        if (keys.length == nrElements && values.length == nrElements)
-            resize();
-
-        keys[nrElements] = key;
-        values[nrElements++] = value;
+    public void put(K key, V value) {
+        elements.put(key, value);
     }
 
     public String toString() {
         String s = "Variables:  ";
-        for (int i = 0; i < nrElements; i++) {
-            s += keys[i].toString() + ": ";
-            s += values[i].toString() + ", ";
+        for(K key : elements.keySet()) {
+            V value = elements.get(key);
+            s += key.toString() + ": ";
+            s += value.toString() + ", ";
         }
         return s;
     }

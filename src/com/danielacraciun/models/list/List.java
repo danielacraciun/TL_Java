@@ -1,16 +1,13 @@
 package com.danielacraciun.models.list;
 
-/**
- * Created by dana on 09.10.2015.
- */
-public interface List {
+public interface List<T> {
     int size();
 
     boolean isEmpty();
 
-    boolean contains(Object o);
+    boolean contains(T o);
 
-    void add(Object o);
+    void add(T o);
 
-    Object get(int index);
+    T get(int index);
 }

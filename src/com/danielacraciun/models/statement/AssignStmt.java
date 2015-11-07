@@ -3,9 +3,6 @@ package com.danielacraciun.models.statement;
 
 import com.danielacraciun.models.expression.Exp;
 
-/**
- * Created by dana on 11.10.2015.
- */
 public class AssignStmt implements IStmt {
     private String id;
     private Exp exp;

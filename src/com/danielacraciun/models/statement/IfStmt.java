@@ -3,9 +3,6 @@ package com.danielacraciun.models.statement;
 
 import com.danielacraciun.models.expression.Exp;
 
-/**
- * Created by dana on 11.10.2015.
- */
 public class IfStmt implements IStmt {
     private Exp exp;
     private IStmt thenStmt;

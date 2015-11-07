@@ -1,53 +1,40 @@
 package com.danielacraciun.models.stack;
+import java.util.Stack;
 
-/**
- * Created by dana on 06.10.2015.
- */
-public class ArrayStack implements Stack{
-    private Object[] elements;
-    private int nrElements;
+public class ArrayStack<T> implements IStack<T> {
+    private Stack<T> elements;
 
     public ArrayStack() {
-        nrElements = 0;
-        elements = new Object[20];
-    }
-
-    private void resize() {
-        Object[] tmp = new Object[nrElements * 2];
-        System.arraycopy(elements, 0, tmp, 0, nrElements);
-        elements = tmp;
+        elements = new Stack<>();
     }
 
     @Override
-    public void push(Object o) {
-        if (elements.length == nrElements)
-            resize();
-        elements[nrElements++] = o;
+    public void push(T elem) {
+        elements.push(elem);
     }
 
     @Override
-    public Object pop() {
-        if (nrElements > 0)
-            return elements[--nrElements];
-        return null;
+    public T pop() {
+        return elements.pop();
     }
 
     @Override
     public boolean isEmpty() {
-        return nrElements == 0;
+        return elements.isEmpty();
     }
 
     @Override
-    public Object top() {
-        if (nrElements > 0)
-            return elements[nrElements - 1];
-        return null;
+    public T top() {
+        return elements.peek();
     }
 
     public String toString() {
         String s = "Execution Stack:  ";
-        for (int i = nrElements - 1; i >= 0; i--)
-            s += elements[i].toString() + ", ";
-        return s.substring(0, s.length() - 2);
+        Stack<?> copy = (Stack<?>) elements.clone();
+        while(!copy.isEmpty()) {
+            s += copy.pop().toString();
+            s += ";";
+        }
+        return s;
     }
 }

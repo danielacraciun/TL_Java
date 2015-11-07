@@ -2,9 +2,6 @@ package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
 
-/**
- * Created by dana on 11.10.2015.
- */
 public class ArithmExp extends Exp {
     private Exp e1;
     private Exp e2;
@@ -34,15 +31,4 @@ public class ArithmExp extends Exp {
         return e1.toString() + " " + op + " " + e2.toString();
     }
 
-    public Exp getE1() {
-        return e1;
-    }
-
-    public Exp getE2() {
-        return e2;
-    }
-
-    public Character getOp() {
-        return op;
-    }
 }

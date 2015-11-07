@@ -2,27 +2,25 @@ package com.danielacraciun.models.prgstate;
 
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.list.List;
-import com.danielacraciun.models.stack.Stack;
+import com.danielacraciun.models.stack.IStack;
+import com.danielacraciun.models.statement.IStmt;
 
-/**
- * Created by dana on 11.10.2015.
- */
 public class PrgState {
-    private Stack exeStack;
-    private Dictionary symTable;
+    private IStack<IStmt> exeStack;
+    private Dictionary<String, Integer> symTable;
     private List out;
 
-    public PrgState(Stack stack, Dictionary symbol_table, List output) {
+    public PrgState(IStack<IStmt> stack, Dictionary<String, Integer> symbol_table, List output) {
         exeStack = stack;
         symTable = symbol_table;
         out = output;
     }
 
-    public Stack getExeStack() {
+    public IStack<IStmt> getExeStack() {
         return exeStack;
     }
 
-    public Dictionary getSymTable() {
+    public Dictionary<String, Integer> getSymTable() {
         return symTable;
     }
 

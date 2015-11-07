@@ -4,9 +4,6 @@ import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
 import junit.framework.TestCase;
 
-/**
- * Created by dana on 12.10.2015.
- */
 public class ArrayDictionaryTest extends TestCase {
 
     private Dictionary d;

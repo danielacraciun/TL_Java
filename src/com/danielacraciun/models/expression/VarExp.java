@@ -2,9 +2,6 @@ package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
 
-/**
- * Created by dana on 11.10.2015.
- */
 public class VarExp extends Exp {
     private String id;
 

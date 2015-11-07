@@ -2,9 +2,6 @@ package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
 
-/**
- * Created by dana on 03.11.2015.
- */
 public class CompExp extends Exp {
     private Exp e1;
     private Exp e2;
@@ -57,15 +54,5 @@ public class CompExp extends Exp {
         return e1.toString() + " " + cmp + " " + e2.toString();
     }
 
-    public Exp getE1() {
-        return e1;
-    }
 
-    public Exp getE2() {
-        return e2;
-    }
-
-    public String getCmp() {
-        return cmp;
-    }
 }

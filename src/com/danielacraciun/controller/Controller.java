@@ -2,14 +2,10 @@ package com.danielacraciun.controller;
 
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.list.List;
-import com.danielacraciun.models.stack.Stack;
+import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
 import com.danielacraciun.models.prgstate.PrgState;
 import com.danielacraciun.repository.IRepository;
-
-/**
- * Created by dana on 20.10.2015.
- */
 
 public class Controller {
     private IRepository repo;
@@ -29,11 +25,11 @@ public class Controller {
     public void oneStepEval(Boolean printFlag) {
         PrgState state = repo.getCrtPrg();
 
-        Stack stk = state.getExeStack();
-        Dictionary symtbl = state.getSymTable();
+        IStack<IStmt> stk = state.getExeStack();
+        Dictionary<String, Integer> symtbl = state.getSymTable();
         List out = state.getOut();
 
-        IStmt crtStmt = (IStmt) stk.pop();
+        IStmt crtStmt = stk.pop();
 
         if (crtStmt instanceof CmpStmt) {
 
@@ -73,7 +69,7 @@ public class Controller {
     public void fullStep(Boolean printFlag) {
         PrgState state = repo.getCrtPrg();
 
-        Stack stk = state.getExeStack();
+        IStack stk = state.getExeStack();
 
         while (!stk.isEmpty()) {
             oneStepEval(printFlag);

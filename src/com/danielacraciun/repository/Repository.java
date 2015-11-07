@@ -1,32 +1,22 @@
 package com.danielacraciun.repository;
 
 import com.danielacraciun.models.prgstate.PrgState;
-
-/**
- * Created by dana on 12.10.2015.
- */
+import java.util.Stack;
 
 public class Repository implements IRepository {
-    private PrgState[] prgStates;
-    private int nrPrg;
-
-    public Repository(PrgState[] states) {
-        prgStates = states;
-        nrPrg = states.length;
-    }
+    private Stack<PrgState> prgStates;
 
     public Repository() {
-        prgStates = new PrgState[20];
-        nrPrg = 0;
+        prgStates = new Stack<>();
     }
 
     public PrgState getCrtPrg() {
-        if (nrPrg > 0)
-            return prgStates[0];
+        if (! prgStates.isEmpty())
+            return prgStates.peek();
         return null;
     }
 
     public void add(PrgState ps) {
-        prgStates[nrPrg++] = ps;
+        prgStates.push(ps);
     }
 }

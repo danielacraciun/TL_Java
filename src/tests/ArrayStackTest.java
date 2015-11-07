@@ -2,15 +2,13 @@ package tests;
 
 
 import com.danielacraciun.models.stack.ArrayStack;
-import com.danielacraciun.models.stack.Stack;
+import com.danielacraciun.models.stack.IStack;
 import junit.framework.TestCase;
 
-/**
- * Created by dana on 12.10.2015.
- */
+@SuppressWarnings("unchecked")
 public class ArrayStackTest extends TestCase {
 
-    private Stack s;
+    private IStack s;
 
     public void setUp() throws Exception {
         super.setUp();
