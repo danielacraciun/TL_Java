@@ -55,7 +55,20 @@ public class Controller {
                 stk.push(stmt4.getThenStmt());
             else
                 stk.push(stmt4.getElseStmt());
-        }
+        } else if (crtStmt instanceof WhileStmt) {
+
+            WhileStmt stmt5 = (WhileStmt) crtStmt;
+            if (stmt5.getExp().eval(symtbl) != 0) {
+                stk.push(stmt5);
+                stk.push(stmt5.getStmt());
+            }
+        } else if (crtStmt instanceof SkipStmt) {
+
+            SkipStmt stmt6 = (SkipStmt) crtStmt;
+            if (stmt6.getExp().eval(symtbl) != 0) {
+                stk.push(stmt6);
+                stk.push(stmt6.getStmt());
+            }
 
         if (stk.isEmpty()) System.out.println("Program has finished execution.");
 

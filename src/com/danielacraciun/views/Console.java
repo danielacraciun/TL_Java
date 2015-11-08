@@ -110,6 +110,7 @@ public class Console {
         System.out.println("2. Assignment statement");
         System.out.println("3. If statement");
         System.out.println("4. Print statement");
+        System.out.println("5. While statement");
 
         Integer opt = scanner.nextInt();
 
@@ -142,6 +143,13 @@ public class Console {
                 Exp e = addNewExp();
                 st = new PrintStmt(e);
                 break;
+            case 5:
+                System.out.println("Expression to evaluate:");
+                Exp expression = addNewExp();
+                System.out.println("Statement:");
+                IStmt statement = addNewStmt();
+                st = new WhileStmt(expression, statement);
+                break;
             default:
                 System.out.println("Please try one of the options above.");
                 st = addNewStmt();
@@ -156,10 +164,12 @@ public class Console {
         System.out.println("2. Constant expression");
         System.out.println("3. Variable expression");
         System.out.println("4. Comparison expression");
+        System.out.println("5. Logical expression");
+        System.out.println("6. Read expression");
 
         Integer opt = scanner.nextInt();
 
-        Exp expr = new Exp();
+        Exp expr;
         switch (opt) {
             case 1:
                 System.out.println("Choose operation: +, -, *, /");
@@ -187,17 +197,38 @@ public class Console {
                 break;
             case 4:
                 System.out.println("Choose comp. operand: <, <=, ==, !=, >=, >");
-                String option = scanner.next();
-                if (Arrays.asList("<", "<=", "==", "!=", ">=", ">").contains(option)) {
+                String op1 = scanner.next();
+                if (Arrays.asList("<", "<=", "==", "!=", ">=", ">").contains(op1)) {
                     System.out.println("Left hand side:");
                     Exp left = addNewExp();
                     System.out.println("Right hand side:");
                     Exp right = addNewExp();
-                    expr = new CompExp(left, right, option);
+                    expr = new CompExp(left, right, op1);
                 } else {
                     System.out.println("Operand MUST be a comp. operator. Try again");
                     expr = addNewExp();
                 }
+                break;
+            case 5:
+                System.out.println("Choose logical operand: && (and), ||(or), !(not)");
+                String op2 = scanner.next();
+                if (Arrays.asList("&&", "||").contains(op2)) {
+                    System.out.println("Left hand side:");
+                    Exp left = addNewExp();
+                    System.out.println("Right hand side:");
+                    Exp right = addNewExp();
+                    expr = new LogicExp(left, right, op2);
+                } else if(op2.equals("!")) {
+                    System.out.println("Expression:");
+                    Exp singleExp = addNewExp();
+                    expr = new LogicExp(singleExp, op2);
+                } else {
+                    System.out.println("Operand MUST be a logical operator. Try again");
+                    expr = addNewExp();
+                }
+                break;
+            case 6:
+                expr = new ReadExp();
                 break;
             default:
                 System.out.println("Please try one of the options above.");
