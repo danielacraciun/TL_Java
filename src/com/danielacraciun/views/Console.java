@@ -3,10 +3,7 @@ package com.danielacraciun.views;
 import com.danielacraciun.controller.Controller;
 import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
-import com.danielacraciun.models.expression.ArithmExp;
-import com.danielacraciun.models.expression.ConstExp;
-import com.danielacraciun.models.expression.Exp;
-import com.danielacraciun.models.expression.VarExp;
+import com.danielacraciun.models.expression.*;
 import com.danielacraciun.models.list.ArrayList;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.prgstate.PrgState;
@@ -158,11 +155,11 @@ public class Console {
         System.out.println("1. Arithmetical expression");
         System.out.println("2. Constant expression");
         System.out.println("3. Variable expression");
-
+        System.out.println("4. Comparison expression");
 
         Integer opt = scanner.nextInt();
 
-        Exp expr;
+        Exp expr = new Exp();
         switch (opt) {
             case 1:
                 System.out.println("Choose operation: +, -, *, /");
@@ -177,7 +174,6 @@ public class Console {
                     System.out.println("Operand MUST be +, -, *, /. Try again");
                     expr = addNewExp();
                 }
-
                 break;
             case 2:
                 System.out.println("Give a number:");
@@ -189,11 +185,24 @@ public class Console {
                 String varName = scanner.next();
                 expr = new VarExp(varName);
                 break;
+            case 4:
+                System.out.println("Choose comp. operand: <, <=, ==, !=, >=, >");
+                String option = scanner.next();
+                if (Arrays.asList("<", "<=", "==", "!=", ">=", ">").contains(option)) {
+                    System.out.println("Left hand side:");
+                    Exp left = addNewExp();
+                    System.out.println("Right hand side:");
+                    Exp right = addNewExp();
+                    expr = new CompExp(left, right, option);
+                } else {
+                    System.out.println("Operand MUST be a comp. operator. Try again");
+                    expr = addNewExp();
+                }
+                break;
             default:
                 System.out.println("Please try one of the options above.");
                 expr = addNewExp();
                 break;
-
         }
         return expr;
     }
