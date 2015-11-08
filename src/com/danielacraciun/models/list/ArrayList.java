@@ -1,48 +1,40 @@
 package com.danielacraciun.models.list;
 
-import java.util.Objects;
-
-public class ArrayList implements List<Integer> {
-    private Integer[] elements;
-    private int nrElements;
+public class ArrayList<T> implements List<T> {
+    private java.util.ArrayList<T> elements;
 
     public ArrayList() {
-        elements = new Integer[20];
-        nrElements = 0;
+        elements = new java.util.ArrayList<>(20);
     }
 
     @Override
     public int size() {
-        return nrElements;
+        return elements.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return nrElements == 0;
+        return elements.size() == 0;
     }
 
     @Override
-    public boolean contains(Integer elem) {
-        for (int i = 0; i < nrElements; i++)
-            if (Objects.equals(elements[i], elem))
-                return true;
-        return false;
+    public boolean contains(T elem) {
+        return elements.contains(elem);
     }
 
     @Override
-    public void add(Integer elem) {
-        elements[nrElements++] = elem;
+    public void add(T elem) {
+        elements.add(elem);
     }
 
     @Override
-    public Integer get(int index) {
-        return elements[index];
+    public T get(int index) {
+        return elements.get(index);
     }
 
     public String toString() {
         String s = "Output:  ";
-        for (int i = 0; i < nrElements; i++)
-            s += elements[i].toString() + ", ";
-        return s.substring(0, s.length() - 2);
+        for (T element : elements) s += element.toString() + "  ";
+        return s;
     }
 }

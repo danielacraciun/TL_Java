@@ -9,7 +9,7 @@ public class ConstExp extends Exp {
         this.nr = nr;
     }
 
-    public int eval(Dictionary tbl) {
+    public int eval(Dictionary<String, Integer> tbl) {
         return nr;
     }
 

@@ -9,8 +9,8 @@ public class VarExp extends Exp {
         this.id = id;
     }
 
-    public int eval(Dictionary tbl) {
-        if (tbl.containsKey(id)) return (int) tbl.get(id);
+    public int eval(Dictionary<String, Integer> tbl) {
+        if (tbl.containsKey(id)) return tbl.get(id);
         return 0;
     }
 

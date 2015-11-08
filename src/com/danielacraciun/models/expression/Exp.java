@@ -4,7 +4,7 @@ import com.danielacraciun.models.dictionary.Dictionary;
 
 public class Exp {
 
-    public int eval(Dictionary table) {
+    public int eval(Dictionary<String, Integer> table) {
         return 0;
     }
 

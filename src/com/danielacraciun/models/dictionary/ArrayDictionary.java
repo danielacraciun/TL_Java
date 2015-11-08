@@ -4,10 +4,10 @@ import java.util.*;
 
 public class ArrayDictionary<K, V> implements Dictionary<K, V> {
 
-    TreeMap<K, V> elements;
+    private TreeMap<K, V> elements;
 
     public ArrayDictionary() {
-        elements = new TreeMap<K, V>();
+        elements = new TreeMap<>();
     }
 
     @Override

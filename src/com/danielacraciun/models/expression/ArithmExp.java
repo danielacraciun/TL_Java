@@ -13,7 +13,7 @@ public class ArithmExp extends Exp {
         this.op = op;
     }
 
-    public int eval(Dictionary tbl) {
+    public int eval(Dictionary<String, Integer> tbl) {
         switch (op) {
             case '+':
                 return (e1.eval(tbl) + e2.eval(tbl));

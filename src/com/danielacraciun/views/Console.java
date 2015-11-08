@@ -19,9 +19,6 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * Created by dana on 26.10.2015.
- */
 public class Console {
 
     private Controller ctrl;
@@ -75,6 +72,7 @@ public class Console {
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void setFlag() {
         this.printFlag = !this.printFlag;
         System.out.println("Flag changed. It is now " + this.printFlag.toString() + ".");
@@ -99,10 +97,11 @@ public class Console {
 
     private void addProgram() {
         IStmt prgStmt = addNewStmt();
-        IStack exeStk = new ArrayStack();
+        IStack<IStmt> exeStk = new ArrayStack<>();
+        Dictionary<String, Integer> tbl = new ArrayDictionary<>();
+        List<Integer> out = new ArrayList<>();
         exeStk.push(prgStmt);
-        Dictionary tbl = new ArrayDictionary();
-        List out = new ArrayList();
+
         PrgState crtPrg = new PrgState(exeStk, tbl, out);
         ctrl.addPrgState(crtPrg);
         mainMenu();

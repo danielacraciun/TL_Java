@@ -27,7 +27,7 @@ public class Controller {
 
         IStack<IStmt> stk = state.getExeStack();
         Dictionary<String, Integer> symtbl = state.getSymTable();
-        List out = state.getOut();
+        List<Integer> out = state.getOut();
 
         IStmt crtStmt = stk.pop();
 

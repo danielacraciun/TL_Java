@@ -8,9 +8,9 @@ import com.danielacraciun.models.statement.IStmt;
 public class PrgState {
     private IStack<IStmt> exeStack;
     private Dictionary<String, Integer> symTable;
-    private List out;
+    private List<Integer> out;
 
-    public PrgState(IStack<IStmt> stack, Dictionary<String, Integer> symbol_table, List output) {
+    public PrgState(IStack<IStmt> stack, Dictionary<String, Integer> symbol_table, List<Integer> output) {
         exeStack = stack;
         symTable = symbol_table;
         out = output;
@@ -24,7 +24,7 @@ public class PrgState {
         return symTable;
     }
 
-    public List getOut() {
+    public List<Integer> getOut() {
         return out;
     }
 }

@@ -24,7 +24,7 @@ class Main {
 
         IStack<IStmt> stk = new ArrayStack<>();
         Dictionary<String, Integer> d = new ArrayDictionary<>();
-        List l = new ArrayList();
+        List<Integer> l = new ArrayList<>();
 
 //        IStmt prg1 = new CmpStmt(new AssignStmt("a", new ConstExp(0)),
 //                new AssignStmt("b", new ArithmExp(new VarExp("a"),

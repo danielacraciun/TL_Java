@@ -6,11 +6,11 @@ import junit.framework.TestCase;
 
 public class ArrayDictionaryTest extends TestCase {
 
-    private Dictionary d;
+    private Dictionary<String, Integer> d;
 
     public void setUp() throws Exception {
         super.setUp();
-        d = new ArrayDictionary();
+        d = new ArrayDictionary<>();
     }
 
     public void testSize() throws Exception {
@@ -38,14 +38,9 @@ public class ArrayDictionaryTest extends TestCase {
         assertTrue(d.containsValue(1));
     }
 
-    public void testGet() throws Exception {
-        d.put("bar", 2);
-        d.put("foo", 1);
-        assertEquals(d.get("bar"), 2);
-    }
-
     public void testPut() throws Exception {
         d.put("foo", 1);
-        assertEquals(d.get("foo"), 1);
+        d.put("bar", 1);
+        assertEquals(d.get("foo"), d.get("bar"));
     }
 }

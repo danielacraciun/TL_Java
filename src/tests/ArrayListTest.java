@@ -7,15 +7,15 @@ import junit.framework.TestCase;
 
 public class ArrayListTest extends TestCase {
 
-    private List l;
+    private List<Integer> l;
 
     public void setUp() throws Exception {
         super.setUp();
-        l = new ArrayList();
+        l = new ArrayList<>();
     }
 
     public void testSize() throws Exception {
-        l.add("hello");
+        l.add(1);
         assertEquals(l.size(), 1);
     }
 
@@ -36,8 +36,8 @@ public class ArrayListTest extends TestCase {
 
     public void testGet() throws Exception {
         l.add(5);
-        l.add(6);
+        l.add(5);
         l.add(7);
-        assertEquals(l.get(0), 5);
+        assertEquals(l.get(0), l.get(1));
     }
 }
