@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8710c52c-c83c-42b6-8837-4acc4a34612b" name="Default" comment="Added a new expression, to compare integers; modified ifs to switches&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/expression/LogicExp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/expression/ReadExp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/statement/SkipStmt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/statement/WhileStmt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/statement/IfThenStmt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/danielacraciun/models/statement/SwitchStmt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/danielacraciun/views/Console.java" afterPath="$PROJECT_DIR$/src/com/danielacraciun/views/Console.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/danielacraciun/controller/Controller.java" afterPath="$PROJECT_DIR$/src/com/danielacraciun/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TL_Java.iws" />
@@ -35,9 +32,22 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24242425">
-              <caret line="66" column="48" selection-start-line="66" selection-start-column="48" selection-end-line="69" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.42929292">
+              <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwitchStmt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/SwitchStmt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <folding>
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#631#632#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,19 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/views/Console.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="217" column="59" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <caret line="164" column="38" selection-start-line="164" selection-start-column="38" selection-end-line="164" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,10 +117,12 @@
         <option value="$PROJECT_DIR$/src/tests/ArrayListTest.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/Main.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/models/expression/LogicExp.java" />
-        <option value="$PROJECT_DIR$/src/com/danielacraciun/views/Console.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/models/expression/ReadExp.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/models/statement/WhileStmt.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/models/statement/SkipStmt.java" />
+        <option value="$PROJECT_DIR$/src/com/danielacraciun/models/statement/IfThenStmt.java" />
+        <option value="$PROJECT_DIR$/src/com/danielacraciun/views/Console.java" />
+        <option value="$PROJECT_DIR$/src/com/danielacraciun/models/statement/SwitchStmt.java" />
         <option value="$PROJECT_DIR$/src/com/danielacraciun/controller/Controller.java" />
       </list>
     </option>
@@ -169,6 +169,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -340,7 +341,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -732,7 +732,8 @@
       <workItem from="1446949921428" duration="2775000" />
       <workItem from="1446989155844" duration="96000" />
       <workItem from="1446995585126" duration="4347000" />
-      <workItem from="1447005306325" duration="2173000" />
+      <workItem from="1447005306325" duration="6609000" />
+      <workItem from="1447081997868" duration="5277000" />
     </task>
     <task id="LOCAL-00001" summary="Added a new expression, to compare integers; modified ifs to switches&#10;">
       <created>1446674687158</created>
@@ -744,11 +745,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24994000" />
+    <option name="totallyTimeSpent" value="34707000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -758,7 +759,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3425926" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3425926" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -804,21 +805,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/dictionary/ArrayDictionary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/dictionary/Dictionary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/prgstate/PrgState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -998,13 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/IfStmt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21359223">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/CmpStmt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14563107">
@@ -1048,14 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/AssignStmt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29126215">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/dictionary/Dictionary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1089,14 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45125347">
           <caret line="11" column="51" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/expression/ArithmExp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1169,19 +1132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/views/Console.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="217" column="59" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1202,13 +1152,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.045454547">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/IfThenStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8636364">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="e#310#311#0" expanded="false" />
+            <element signature="e#395#396#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/IfStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.36363637">
           <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1216,10 +1184,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/expression/ArithmExp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.045454547">
+          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/AssignStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/views/Console.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="164" column="38" selection-start-line="164" selection-start-column="38" selection-end-line="164" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/models/statement/SwitchStmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding>
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/danielacraciun/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24242425">
-          <caret line="66" column="48" selection-start-line="66" selection-start-column="48" selection-end-line="69" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.42929292">
+          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
           <folding />
         </state>
       </provider>

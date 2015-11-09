@@ -108,9 +108,13 @@ public class Console {
         System.out.println("Choose a type of statement:");
         System.out.println("1. Compound statement");
         System.out.println("2. Assignment statement");
-        System.out.println("3. If statement");
+        System.out.println("3. If/then/else statement");
         System.out.println("4. Print statement");
         System.out.println("5. While statement");
+        System.out.println("6. Skip statement");
+        System.out.println("7. If/then statement");
+        System.out.println("8. Switch statement");
+
 
         Integer opt = scanner.nextInt();
 
@@ -149,6 +153,36 @@ public class Console {
                 System.out.println("Statement:");
                 IStmt statement = addNewStmt();
                 st = new WhileStmt(expression, statement);
+                break;
+            case 6:
+                st = new SkipStmt();
+                break;
+            case 7:
+                System.out.println("Expression to evaluate:");
+                Exp exp1 = addNewExp();
+                System.out.println("Then Statement:");
+                IStmt then1 = addNewStmt();
+                st = new IfThenStmt(exp1, then1);
+                break;
+            case 8:
+                System.out.println("Switch operator:");
+                String variableName = scanner.next();
+                expr = new VarExp(variableName);
+
+                System.out.println("Case 1 expression:");
+                Exp expCase1 = addNewExp();
+                System.out.println("Case 1 Statement:");
+                IStmt case1 = addNewStmt();
+
+                System.out.println("Case 2 expression:");
+                Exp expCase2 = addNewExp();
+                System.out.println("Case 2 Statement:");
+                IStmt case2 = addNewStmt();
+
+                System.out.println("Default case Statement:");
+                IStmt caseDefault = addNewStmt();
+
+                st = new SwitchStmt(expr, expCase1, case1, expCase2, case2, caseDefault);
                 break;
             default:
                 System.out.println("Please try one of the options above.");

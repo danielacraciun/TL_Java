@@ -1,6 +1,8 @@
 package com.danielacraciun.controller;
 
 import com.danielacraciun.models.dictionary.Dictionary;
+import com.danielacraciun.models.expression.ArithmExp;
+import com.danielacraciun.models.expression.Exp;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
@@ -62,13 +64,20 @@ public class Controller {
                 stk.push(stmt5);
                 stk.push(stmt5.getStmt());
             }
-        } else if (crtStmt instanceof SkipStmt) {
 
-            SkipStmt stmt6 = (SkipStmt) crtStmt;
-            if (stmt6.getExp().eval(symtbl) != 0) {
-                stk.push(stmt6);
-                stk.push(stmt6.getStmt());
-            }
+        } else if (crtStmt instanceof IfThenStmt) {
+
+            IfThenStmt stmt6 = (IfThenStmt) crtStmt;
+            stk.push(new IfStmt(stmt6.getExp(), stmt6.getThenStmt(), new SkipStmt()));
+
+        } else if (crtStmt instanceof  SwitchStmt) {
+            SwitchStmt stmt7 = (SwitchStmt) crtStmt;
+            Exp difSwitch = new ArithmExp(stmt7.getOp(), stmt7.getOpCase2(), '-');
+            Exp difSwitch2 = new ArithmExp(stmt7.getOp(), stmt7.getOpCase1(), '-');
+            IStmt ifSwitch = new IfStmt(difSwitch2, stmt7.getDefaultCase(), stmt7.getCase1());
+            IStmt switchStmt = new IfStmt(difSwitch, ifSwitch, stmt7.getCase2());
+            stk.push(switchStmt);
+        }
 
         if (stk.isEmpty()) System.out.println("Program has finished execution.");
 
