@@ -42,4 +42,9 @@ public class SwitchStmt implements IStmt {
     public IStmt getDefaultCase() {
         return defaultCase;
     }
+
+    public String toString() {
+        return "SWITCH(" + op.toString() + ") " + " case " + opCase1.toString() + ": " + case1.toString()
+                + " case " + opCase2.toString() + ": " + case2.toString() + " default: " + defaultCase.toString();
+    }
 }
