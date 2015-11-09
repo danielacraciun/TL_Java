@@ -1,6 +1,7 @@
 package com.danielacraciun.views;
 
 import com.danielacraciun.controller.Controller;
+import com.danielacraciun.controller.ControllerException;
 import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.expression.*;
@@ -10,6 +11,7 @@ import com.danielacraciun.models.prgstate.PrgState;
 import com.danielacraciun.models.stack.ArrayStack;
 import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
+import com.danielacraciun.repository.RepositoryException;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -28,7 +30,7 @@ public class Console {
         scanner = new Scanner(System.in);
     }
 
-    private void mainMenu() {
+    private void mainMenu() throws ControllerException, RepositoryException, ConsoleException {
         System.out.println("Hello. Please choose an option below:");
         System.out.println("1. Input a program; ");
         System.out.println("2. Do a one-step evaluation of the current program;");
@@ -38,10 +40,6 @@ public class Console {
 
         try {
             Integer opt = scanner.nextInt();
-            if (ctrl.getCrtPrgState() == null && opt > 1) {
-                System.out.println("There is no current program. Please add one.");
-                addProgram();
-            } else {
                 switch (opt) {
                     case 1:
                         addProgram();
@@ -59,40 +57,71 @@ public class Console {
                         System.out.println("Goodbye.");
                         break;
                     default:
-                        System.out.println("Wrong option. Try again.");
-                        mainMenu();
-                        break;
-                }
+
             }
         } catch (InputMismatchException e) {
-            System.out.println("Input incorrect, program will terminate.");
+            throw new ConsoleException();
         }
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private void setFlag() {
+    private void setFlag(){
         this.printFlag = !this.printFlag;
         System.out.println("Flag changed. It is now " + this.printFlag.toString() + ".");
         System.out.println("Press Enter to go back.");
+
         try {
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mainMenu();
+
+        try {
+            mainMenu();
+        } catch (ControllerException e) {
+            System.out.println("Step evaluation error.");
+        } catch (RepositoryException e) {
+            System.out.println("Program state error.");
+        } catch (ConsoleException e) {
+            System.out.println("Wrong option. Try again.");
+        }
     }
 
-    private void fullStep() {
+    private void fullStep(){
+        try {
         ctrl.fullStep(printFlag);
         mainMenu();
+        } catch (ControllerException e) {
+            System.out.println("Step evaluation error.");
+        } catch (RepositoryException e) {
+            System.out.println("Program state error.");
+        } catch (DivisionByZeroException e) {
+            System.out.println("Tried to divide by 0.");
+        } catch (ConsoleException e) {
+            System.out.println("Wrong option. Try again.");
+        } catch (UninitializedVarException e) {
+            System.out.println("Variable uninitialized.");
+        }
     }
 
     private void oneStep() {
-        ctrl.oneStepEval(printFlag);
-        mainMenu();
+        try {
+            ctrl.oneStepEval(printFlag);
+            mainMenu();
+        } catch (ControllerException e) {
+            System.out.println("Step evaluation error.");
+        } catch (RepositoryException e) {
+            System.out.println("Program state error.");
+        } catch (DivisionByZeroException e) {
+            System.out.println("Tried to divide by 0.");
+        } catch (ConsoleException e) {
+            System.out.println("Wrong option. Try again.");
+        } catch (UninitializedVarException e) {
+            System.out.println("Variable uninitialized.");
+        }
     }
 
-    private void addProgram() {
+    private void addProgram(){
         IStmt prgStmt = addNewStmt();
         IStack<IStmt> exeStk = new ArrayStack<>();
         Dictionary<String, Integer> tbl = new ArrayDictionary<>();
@@ -101,7 +130,16 @@ public class Console {
 
         PrgState crtPrg = new PrgState(exeStk, tbl, out);
         ctrl.addPrgState(crtPrg);
-        mainMenu();
+
+        try {
+            mainMenu();
+        } catch (ControllerException e) {
+            System.out.println("Step evaluation error.");
+        } catch (RepositoryException e) {
+            System.out.println("Program state error.");
+        } catch (ConsoleException e) {
+            System.out.println("Wrong option. Try again.");
+        }
     }
 
     private IStmt addNewStmt() {
@@ -273,6 +311,14 @@ public class Console {
     }
 
     public void run() {
-        mainMenu();
+        try {
+            mainMenu();
+        } catch (ControllerException e) {
+            System.out.println("Step evaluation error.");
+        } catch (RepositoryException e) {
+            System.out.println("Program state error.");
+        } catch (ConsoleException e) {
+            System.out.println("Wrong option. Try again.");
+        }
     }
 }

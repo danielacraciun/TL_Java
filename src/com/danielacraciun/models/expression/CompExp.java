@@ -13,7 +13,7 @@ public class CompExp extends Exp {
         this.cmp = cmp;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) {
+    public int eval(Dictionary<String, Integer> tbl) throws DivisionByZeroException, UninitializedVarException {
         switch (cmp) {
             case "<":
                 if (e1.eval(tbl) < e2.eval(tbl))

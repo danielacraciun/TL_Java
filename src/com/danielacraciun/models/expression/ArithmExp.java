@@ -13,7 +13,7 @@ public class ArithmExp extends Exp {
         this.op = op;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) {
+    public int eval(Dictionary<String, Integer> tbl) throws DivisionByZeroException, UninitializedVarException {
         switch (op) {
             case '+':
                 return (e1.eval(tbl) + e2.eval(tbl));
@@ -22,6 +22,10 @@ public class ArithmExp extends Exp {
             case '*':
                 return (e1.eval(tbl) * e2.eval(tbl));
             case '/':
+                int expr1 = e1.eval(tbl);
+                int expr2 = e2.eval(tbl);
+                if(expr2 == 0)
+                    throw new DivisionByZeroException();
                 return (e1.eval(tbl) / e2.eval(tbl));
         }
         return 0;

@@ -9,9 +9,12 @@ public class VarExp extends Exp {
         this.id = id;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) {
-        if (tbl.containsKey(id)) return tbl.get(id);
-        return 0;
+    public int eval(Dictionary<String, Integer> tbl) throws UninitializedVarException {
+        if (tbl.containsKey(id)) {
+            return tbl.get(id);
+        } else {
+            throw new UninitializedVarException();
+        }
     }
 
     public String toString() {
