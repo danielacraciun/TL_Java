@@ -1,6 +1,8 @@
 package com.danielacraciun.models.stack;
 
-public interface IStack<T> {
+import java.io.Serializable;
+
+public interface IStack<T> extends Serializable{
 
     void push(T elem);
 

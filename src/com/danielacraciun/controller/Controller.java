@@ -12,6 +12,10 @@ import com.danielacraciun.models.prgstate.PrgState;
 import com.danielacraciun.repository.IRepository;
 import com.danielacraciun.repository.RepositoryException;
 
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+
 public class Controller {
     private IRepository repo;
 
@@ -27,10 +31,18 @@ public class Controller {
         return repo.getCrtPrg();
     }
 
-    public void oneStepEval(Boolean printFlag) throws ControllerException, DivisionByZeroException, UninitializedVarException {
+    public void serialize() throws RepositoryException {
+        repo.serialize();
+    }
+
+    public PrgState deserialize() throws RepositoryException {
+        return repo.deserialize();
+    }
+
+    public void oneStepEval(Boolean printFlag, Boolean logFlag, String filename)
+                throws ControllerException, DivisionByZeroException, UninitializedVarException {
         try {
             PrgState state = repo.getCrtPrg();
-
             IStack<IStmt> stk = state.getExeStack();
             Dictionary<String, Integer> symtbl = state.getSymTable();
             List<Integer> out = state.getOut();
@@ -85,6 +97,10 @@ public class Controller {
 
             if (stk.isEmpty()) System.out.println("Program has finished execution.");
 
+            if(logFlag) {
+                repo.writeToFile(filename);
+            }
+
             if (printFlag) {
                 System.out.println(stk.toString());
                 System.out.println(symtbl.toString());
@@ -95,14 +111,15 @@ public class Controller {
         }
     }
 
-    public void fullStep(Boolean printFlag) throws ControllerException, DivisionByZeroException, UninitializedVarException {
+    public void fullStep(Boolean printFlag, Boolean logFlag, String filename)
+                throws ControllerException, DivisionByZeroException, UninitializedVarException {
         try {
             PrgState state = repo.getCrtPrg();
 
             IStack stk = state.getExeStack();
 
             while (!stk.isEmpty()) {
-                oneStepEval(printFlag);
+                oneStepEval(printFlag, logFlag, filename);
             }
         } catch (RepositoryException e) {
             throw new ControllerException();

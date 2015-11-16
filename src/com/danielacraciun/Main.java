@@ -15,7 +15,6 @@ import com.danielacraciun.repository.IRepository;
 import com.danielacraciun.repository.Repository;
 import com.danielacraciun.repository.RepositoryException;
 import com.danielacraciun.views.Console;
-//import com.danielacraciun.views.Console;
 
 class Main {
 
@@ -24,27 +23,32 @@ class Main {
         Controller ctrl = new Controller(repo);
         Console console = new Console(ctrl);
         console.run();
-
+//
 //        IStack<IStmt> stk = new ArrayStack<>();
 //        Dictionary<String, Integer> d = new ArrayDictionary<>();
 //        List<Integer> l = new ArrayList<>();
 //        IStmt prg1 = new CmpStmt(new AssignStmt("a", new ConstExp(0)),
-//                new AssignStmt("b", new ArithmExp(new VarExp("a"),
-//                        new ConstExp(2), '*')));
-//        IStmt prg2 = new CmpStmt (new AssignStmt ("c",
-//                new ArithmExp(new VarExp("a"), new ConstExp(2), '+')),
-//                new IfStmt(new VarExp("a"),
-//                        new PrintStmt(new ArithmExp(new VarExp("b"), new VarExp("c"), '+')),
-//                        new PrintStmt(new ArithmExp(new VarExp("b"), new VarExp("c"), '-'))));
-//
-//        IStmt fprg = new CmpStmt (prg1, prg2);
-//        stk.push(fprg);
+//                new IfThenStmt(new LogicExp(new VarExp("a"), "!"), new PrintStmt(new VarExp("a"))));
+//        IStmt prg2 = new CmpStmt (new AssignStmt ("a", new ConstExp(2)),
+//                new WhileStmt(new LogicExp(new VarExp("a"), new ConstExp(2), "&&"),
+//                new AssignStmt("a", new ArithmExp(new VarExp("a"), new ConstExp(1), '-'))));
+//        IStmt prg3 = new CmpStmt (new AssignStmt ("a", new ConstExp(2)),
+//                    new SwitchStmt(new VarExp("a"), new ConstExp(1), new PrintStmt(new ReadExp()),
+//                            new ConstExp(2), new PrintStmt(new ArithmExp(new VarExp("a"), new ConstExp(2), '/')),
+//                            new PrintStmt(new ConstExp(10))));
+//        stk.push(prg3);
 //        PrgState ps = new PrgState(stk, d, l);
 //
 //        IRepository repo = new Repository();
 //        repo.add(ps);
 //        Controller ctrl = new Controller(repo);
-//
-//        ctrl.fullStep(true);
+//        try {
+//            ctrl.oneStepEval(true);
+//            repo.serialize();
+//        } catch (DivisionByZeroException e) {
+//            System.out.println("Tried to divide by 0.");
+//        } catch (UninitializedVarException e) {
+//            System.out.println("Variable uninitialized.");
+//        }
     }
 }

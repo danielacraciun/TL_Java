@@ -2,8 +2,12 @@ package com.danielacraciun.repository;
 
 import com.danielacraciun.models.prgstate.PrgState;
 
-public interface IRepository {
-    PrgState getCrtPrg() throws RepositoryException;
+import java.io.Serializable;
 
+public interface IRepository extends Serializable {
+    PrgState getCrtPrg() throws RepositoryException;
+    void serialize() throws RepositoryException;
+    PrgState deserialize() throws RepositoryException;
     void add(PrgState o);
+    void writeToFile(String filename);
 }

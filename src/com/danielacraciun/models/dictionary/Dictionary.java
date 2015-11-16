@@ -1,6 +1,8 @@
 package com.danielacraciun.models.dictionary;
 
-public interface Dictionary<K, V> {
+import java.io.Serializable;
+
+public interface Dictionary<K, V> extends Serializable {
 
     int size();
 

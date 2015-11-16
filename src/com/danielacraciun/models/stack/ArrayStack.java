@@ -37,4 +37,6 @@ public class ArrayStack<T> implements IStack<T> {
         }
         return s;
     }
+
+
 }

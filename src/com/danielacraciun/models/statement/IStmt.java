@@ -1,5 +1,7 @@
 package com.danielacraciun.models.statement;
 
-public interface IStmt {
+import java.io.Serializable;
+
+public interface IStmt extends Serializable{
     String toString();
 }

@@ -13,7 +13,8 @@ import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
 import com.danielacraciun.repository.RepositoryException;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -22,20 +23,26 @@ public class Console {
 
     private Controller ctrl;
     private Boolean printFlag;
+    private Boolean logFlag;
     private Scanner scanner;
+    private String crtfile;
 
     public Console(Controller ctrl) {
         this.ctrl = ctrl;
         printFlag = true;
+        logFlag = false;
         scanner = new Scanner(System.in);
+        crtfile = "default.txt";
     }
 
     private void mainMenu() throws ControllerException, RepositoryException, ConsoleException {
+
         System.out.println("Hello. Please choose an option below:");
         System.out.println("1. Input a program; ");
         System.out.println("2. Do a one-step evaluation of the current program;");
         System.out.println("3. Do a full-step evaluation of the current program;");
-        System.out.println("4. Change print flag (currently set to: " + this.printFlag.toString() + ")");
+        System.out.println("4. Edit print flag and logging;");
+        System.out.println("5. See last program state;");
         System.out.println("Exit by pressing 0.");
 
         try {
@@ -53,30 +60,21 @@ public class Console {
                     case 4:
                         setFlag();
                         break;
+                    case 5:
+                        seeLastPrgState();
                     case 0:
-                        System.out.println("Goodbye.");
                         break;
                     default:
-
+                        System.out.println("Wrong option. Try again.");
             }
         } catch (InputMismatchException e) {
             throw new ConsoleException();
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private void setFlag(){
-        this.printFlag = !this.printFlag;
-        System.out.println("Flag changed. It is now " + this.printFlag.toString() + ".");
-        System.out.println("Press Enter to go back.");
-
+    private void seeLastPrgState() {
         try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
+            System.out.println(ctrl.deserialize().toString());
             mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -87,9 +85,50 @@ public class Console {
         }
     }
 
+    private void setFlag(){
+        System.out.println("1. Edit print flag (currently set to: " + this.printFlag.toString() + ");");
+        System.out.println("2. Save logging to a file (currently set to: " + this.logFlag.toString() + ");");
+        System.out.println("Return to main menu by pressing 0.");
+
+        Integer opt = scanner.nextInt();
+
+        switch (opt) {
+            case 1:
+                this.printFlag = !this.printFlag;
+                System.out.println("Print flag changed. It is now " + this.printFlag.toString() + ".");
+                setFlag();
+                break;
+            case 2:
+                this.logFlag = !this.logFlag;
+                if(logFlag) {
+                    System.out.println("File to print to: ");
+                    this.crtfile = scanner.next();
+                    System.out.println("Printing to " + this.crtfile + ".");
+                }
+                System.out.println("Log flag changed. It is now " + this.logFlag.toString() + ".");
+                setFlag();
+                break;
+            case 0:
+                try {
+                    mainMenu();
+                } catch (ControllerException e) {
+                    System.out.println("Step evaluation error.");
+                } catch (RepositoryException e) {
+                    System.out.println("Program state error.");
+                } catch (ConsoleException e) {
+                    System.out.println("Wrong option. Try again.");
+                }
+                break;
+            default:
+                System.out.println("Wrong option. Try again.");
+        }
+
+    }
+
     private void fullStep(){
         try {
-        ctrl.fullStep(printFlag);
+        ctrl.fullStep(printFlag, logFlag, this.crtfile);
+        ctrl.serialize();
         mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -106,7 +145,8 @@ public class Console {
 
     private void oneStep() {
         try {
-            ctrl.oneStepEval(printFlag);
+            ctrl.oneStepEval(printFlag, logFlag, this.crtfile);
+            ctrl.serialize();
             mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -130,6 +170,11 @@ public class Console {
 
         PrgState crtPrg = new PrgState(exeStk, tbl, out);
         ctrl.addPrgState(crtPrg);
+        try {
+            ctrl.serialize();
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
 
         try {
             mainMenu();

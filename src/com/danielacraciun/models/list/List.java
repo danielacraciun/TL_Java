@@ -1,6 +1,8 @@
 package com.danielacraciun.models.list;
 
-public interface List<T> {
+import java.io.Serializable;
+
+public interface List<T> extends Serializable {
     int size();
 
     boolean isEmpty();
