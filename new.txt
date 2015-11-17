@@ -1,7 +1,0 @@
-Execution Stack:  a=6;skip;
-Variables:  
-Output:  Execution Stack:  skip;
-Variables:  a: 6, 
-Output:  Execution Stack:  
-Variables:  a: 6, 
-Output:  

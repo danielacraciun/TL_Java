@@ -42,7 +42,7 @@ public class Console {
         System.out.println("2. Do a one-step evaluation of the current program;");
         System.out.println("3. Do a full-step evaluation of the current program;");
         System.out.println("4. Edit print flag and logging;");
-        System.out.println("5. See last program state;");
+        System.out.println("5. See initial program state;");
         System.out.println("Exit by pressing 0.");
 
         try {
@@ -61,7 +61,7 @@ public class Console {
                         setFlag();
                         break;
                     case 5:
-                        seeLastPrgState();
+                        seeInitPrgState();
                     case 0:
                         break;
                     default:
@@ -72,7 +72,7 @@ public class Console {
         }
     }
 
-    private void seeLastPrgState() {
+    private void seeInitPrgState() {
         try {
             System.out.println(ctrl.deserialize().toString());
             mainMenu();
@@ -128,7 +128,6 @@ public class Console {
     private void fullStep(){
         try {
         ctrl.fullStep(printFlag, logFlag, this.crtfile);
-        ctrl.serialize();
         mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -146,7 +145,6 @@ public class Console {
     private void oneStep() {
         try {
             ctrl.oneStepEval(printFlag, logFlag, this.crtfile);
-            ctrl.serialize();
             mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -170,10 +168,11 @@ public class Console {
 
         PrgState crtPrg = new PrgState(exeStk, tbl, out);
         ctrl.addPrgState(crtPrg);
+
         try {
             ctrl.serialize();
         } catch (RepositoryException e) {
-            e.printStackTrace();
+            System.out.println("Program state error.");
         }
 
         try {
