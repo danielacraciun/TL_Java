@@ -1,6 +1,7 @@
 package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
+import com.danielacraciun.models.heap.IHeap;
 
 public class CompExp extends Exp {
     private Exp e1;
@@ -13,35 +14,36 @@ public class CompExp extends Exp {
         this.cmp = cmp;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) throws DivisionByZeroException, UninitializedVarException {
+    @Override
+    public int eval(Dictionary<String, Integer> tbl, IHeap<Integer> heap) throws DivisionByZeroException, UninitializedVarException {
         switch (cmp) {
             case "<":
-                if (e1.eval(tbl) < e2.eval(tbl))
+                if (e1.eval(tbl, heap) < e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;
             case "<=":
-                if (e1.eval(tbl) <= e2.eval(tbl))
+                if (e1.eval(tbl, heap) <= e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;
             case "==":
-                if (e1.eval(tbl) == e2.eval(tbl))
+                if (e1.eval(tbl, heap) == e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;
             case "!=":
-                if (e1.eval(tbl) != e2.eval(tbl))
+                if (e1.eval(tbl, heap) != e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;
             case ">":
-                if (e1.eval(tbl) > e2.eval(tbl))
+                if (e1.eval(tbl, heap) > e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;
             case ">=":
-                if (e1.eval(tbl) <= e2.eval(tbl))
+                if (e1.eval(tbl, heap) <= e2.eval(tbl, heap))
                     return 1;
                 else
                     return 0;

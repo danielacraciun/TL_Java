@@ -1,6 +1,7 @@
 package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
+import com.danielacraciun.models.heap.IHeap;
 
 public class ArithmExp extends Exp {
     private Exp e1;
@@ -13,20 +14,20 @@ public class ArithmExp extends Exp {
         this.op = op;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) throws DivisionByZeroException, UninitializedVarException {
+    public int eval(Dictionary<String, Integer> tbl, IHeap<Integer> heap) throws DivisionByZeroException, UninitializedVarException {
         switch (op) {
             case '+':
-                return (e1.eval(tbl) + e2.eval(tbl));
+                return (e1.eval(tbl, heap) + e2.eval(tbl, heap));
             case '-':
-                return (e1.eval(tbl) - e2.eval(tbl));
+                return (e1.eval(tbl, heap) - e2.eval(tbl, heap));
             case '*':
-                return (e1.eval(tbl) * e2.eval(tbl));
+                return (e1.eval(tbl, heap) * e2.eval(tbl, heap));
             case '/':
-                int expr1 = e1.eval(tbl);
-                int expr2 = e2.eval(tbl);
+                int expr1 = e1.eval(tbl, heap);
+                int expr2 = e2.eval(tbl, heap);
                 if(expr2 == 0)
                     throw new DivisionByZeroException();
-                return (e1.eval(tbl) / e2.eval(tbl));
+                return (e1.eval(tbl, heap) / e2.eval(tbl, heap));
         }
         return 0;
     }

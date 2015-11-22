@@ -1,6 +1,7 @@
 package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
+import com.danielacraciun.models.heap.IHeap;
 
 public class VarExp extends Exp {
     private String id;
@@ -9,7 +10,7 @@ public class VarExp extends Exp {
         this.id = id;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) throws UninitializedVarException {
+    public int eval(Dictionary<String, Integer> tbl, IHeap<Integer> heap) throws UninitializedVarException {
         if (tbl.containsKey(id)) {
             return tbl.get(id);
         } else {

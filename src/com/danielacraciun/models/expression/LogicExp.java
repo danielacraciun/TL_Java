@@ -1,6 +1,7 @@
 package com.danielacraciun.models.expression;
 
 import com.danielacraciun.models.dictionary.Dictionary;
+import com.danielacraciun.models.heap.IHeap;
 
 public class LogicExp extends Exp {
     private Exp e1;
@@ -19,20 +20,20 @@ public class LogicExp extends Exp {
         this.cmp = cmp;
     }
 
-    public int eval(Dictionary<String, Integer> tbl) throws DivisionByZeroException, UninitializedVarException {
+    public int eval(Dictionary<String, Integer> tbl, IHeap<Integer> heap) throws DivisionByZeroException, UninitializedVarException {
         switch (cmp) {
             case "&&":
-                if (e1.eval(tbl) != 0 && e2.eval(tbl) != 0)
+                if (e1.eval(tbl, heap) != 0 && e2.eval(tbl, heap) != 0)
                     return 1;
                 else
                     return 0;
             case "||":
-                if (e1.eval(tbl) != 0 || e2.eval(tbl) != 0)
+                if (e1.eval(tbl, heap) != 0 || e2.eval(tbl, heap) != 0)
                     return 1;
                 else
                     return 0;
             case "!":
-                if (e1.eval(tbl) == 0)
+                if (e1.eval(tbl, heap) == 0)
                     return 1;
                 else
                     return 0;

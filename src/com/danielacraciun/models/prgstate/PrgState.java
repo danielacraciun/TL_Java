@@ -5,7 +5,6 @@ import com.danielacraciun.models.heap.IHeap;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.IStmt;
-import com.danielacraciun.repository.RepositoryException;
 
 import java.io.*;
 

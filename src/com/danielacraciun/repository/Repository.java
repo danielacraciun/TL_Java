@@ -1,9 +1,6 @@
 package com.danielacraciun.repository;
 
 import com.danielacraciun.models.prgstate.PrgState;
-import com.danielacraciun.models.stack.IStack;
-import com.danielacraciun.models.statement.IStmt;
-
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -65,7 +62,7 @@ public class Repository implements IRepository {
         }
     }
 
-    public PrgState deserialize() throws RepositoryException {
+    public PrgState deserialize() {
         ObjectInputStream in = null;
         PrgState ps = null;
         try {

@@ -2,21 +2,21 @@ package com.danielacraciun.models.statement;
 
 import com.danielacraciun.models.expression.Exp;
 
-public class NewStmt implements IStmt {
+public class WriteHeapStmt implements IStmt {
     private String id;
     private Exp exp;
 
-    public NewStmt(String id, Exp exp) {
+    public WriteHeapStmt(String id, Exp exp) {
+        this.id = id;
         this.exp = exp;
-        this.id = id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Exp getExp() {
@@ -29,6 +29,6 @@ public class NewStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "new(" + id + ", " + exp.toString() + ")";
+        return "writeHeap( " + id + ", " + exp.toString() + ")";
     }
 }

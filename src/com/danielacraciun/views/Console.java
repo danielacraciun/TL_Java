@@ -5,6 +5,8 @@ import com.danielacraciun.controller.ControllerException;
 import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.expression.*;
+import com.danielacraciun.models.heap.IHeap;
+import com.danielacraciun.models.heap.MyHeap;
 import com.danielacraciun.models.list.ArrayList;
 import com.danielacraciun.models.list.List;
 import com.danielacraciun.models.prgstate.PrgState;
@@ -12,9 +14,6 @@ import com.danielacraciun.models.stack.ArrayStack;
 import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.*;
 import com.danielacraciun.repository.RepositoryException;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -35,7 +34,7 @@ public class Console {
         crtfile = "default.txt";
     }
 
-    private void mainMenu() throws ControllerException, RepositoryException, ConsoleException {
+    private void mainMenu() throws ConsoleException {
 
         System.out.println("Hello. Please choose an option below:");
         System.out.println("1. Input a program; ");
@@ -76,10 +75,6 @@ public class Console {
         try {
             System.out.println(ctrl.deserialize().toString());
             mainMenu();
-        } catch (ControllerException e) {
-            System.out.println("Step evaluation error.");
-        } catch (RepositoryException e) {
-            System.out.println("Program state error.");
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");
         }
@@ -111,10 +106,6 @@ public class Console {
             case 0:
                 try {
                     mainMenu();
-                } catch (ControllerException e) {
-                    System.out.println("Step evaluation error.");
-                } catch (RepositoryException e) {
-                    System.out.println("Program state error.");
                 } catch (ConsoleException e) {
                     System.out.println("Wrong option. Try again.");
                 }
@@ -131,8 +122,6 @@ public class Console {
         mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
-        } catch (RepositoryException e) {
-            System.out.println("Program state error.");
         } catch (DivisionByZeroException e) {
             System.out.println("Tried to divide by 0.");
         } catch (ConsoleException e) {
@@ -148,8 +137,6 @@ public class Console {
             mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
-        } catch (RepositoryException e) {
-            System.out.println("Program state error.");
         } catch (DivisionByZeroException e) {
             System.out.println("Tried to divide by 0.");
         } catch (ConsoleException e) {
@@ -164,9 +151,10 @@ public class Console {
         IStack<IStmt> exeStk = new ArrayStack<>();
         Dictionary<String, Integer> tbl = new ArrayDictionary<>();
         List<Integer> out = new ArrayList<>();
+        IHeap<Integer> h = new MyHeap<>();
         exeStk.push(prgStmt);
 
-        PrgState crtPrg = new PrgState(exeStk, tbl, out);
+        PrgState crtPrg = new PrgState(exeStk, tbl, out, h);
         ctrl.addPrgState(crtPrg);
 
         try {
@@ -177,10 +165,6 @@ public class Console {
 
         try {
             mainMenu();
-        } catch (ControllerException e) {
-            System.out.println("Step evaluation error.");
-        } catch (RepositoryException e) {
-            System.out.println("Program state error.");
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");
         }
@@ -196,7 +180,8 @@ public class Console {
         System.out.println("6. Skip statement");
         System.out.println("7. If/then statement");
         System.out.println("8. Switch statement");
-
+        System.out.println("9. New statement");
+        System.out.println("10. Write to heap statement");
 
         Integer opt = scanner.nextInt();
 
@@ -266,6 +251,20 @@ public class Console {
 
                 st = new SwitchStmt(expr, expCase1, case1, expCase2, case2, caseDefault);
                 break;
+            case 9:
+                System.out.println("Variable name:");
+                String newVar = scanner.next();
+                System.out.println("Assigned expression:");
+                Exp exp9 = addNewExp();
+                st = new NewStmt(newVar, exp9);
+                break;
+            case 10:
+                System.out.println("Variable name:");
+                String heapVar = scanner.next();
+                System.out.println("Assigned expression:");
+                Exp exp10 = addNewExp();
+                st = new WriteHeapStmt(heapVar, exp10);
+                break;
             default:
                 System.out.println("Please try one of the options above.");
                 st = addNewStmt();
@@ -282,6 +281,7 @@ public class Console {
         System.out.println("4. Comparison expression");
         System.out.println("5. Logical expression");
         System.out.println("6. Read expression");
+        System.out.println("7. Read heap expression");
 
         Integer opt = scanner.nextInt();
 
@@ -346,6 +346,11 @@ public class Console {
             case 6:
                 expr = new ReadExp();
                 break;
+            case 7:
+                System.out.println("Variable name:");
+                String varNew = scanner.next();
+                expr = new ReadHeapExp(varNew);
+                break;
             default:
                 System.out.println("Please try one of the options above.");
                 expr = addNewExp();
@@ -357,10 +362,6 @@ public class Console {
     public void run() {
         try {
             mainMenu();
-        } catch (ControllerException e) {
-            System.out.println("Step evaluation error.");
-        } catch (RepositoryException e) {
-            System.out.println("Program state error.");
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");
         }
