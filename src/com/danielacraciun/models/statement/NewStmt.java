@@ -1,6 +1,9 @@
 package com.danielacraciun.models.statement;
 
+import com.danielacraciun.models.expression.DivisionByZeroException;
 import com.danielacraciun.models.expression.Exp;
+import com.danielacraciun.models.expression.UninitializedVarException;
+import com.danielacraciun.models.prgstate.PrgState;
 
 public class NewStmt implements IStmt {
     private String id;
@@ -30,5 +33,12 @@ public class NewStmt implements IStmt {
     @Override
     public String toString() {
         return "new(" + id + ", " + exp.toString() + ")";
+    }
+
+    @Override
+    public PrgState execute(PrgState state) throws DivisionByZeroException, UninitializedVarException {
+        Integer value = exp.eval(state.getSymTable(), state.getHeap());
+        state.getSymTable().put(id, state.getHeap().add(value));
+        return state;
     }
 }

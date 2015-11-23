@@ -25,6 +25,7 @@ public class Console {
     private Boolean logFlag;
     private Scanner scanner;
     private String crtfile;
+    private PrgState crtPrg;
 
     public Console(Controller ctrl) {
         this.ctrl = ctrl;
@@ -118,7 +119,7 @@ public class Console {
 
     private void fullStep(){
         try {
-        ctrl.fullStep(printFlag, logFlag, this.crtfile);
+        ctrl.fullStep(crtPrg, printFlag, logFlag, this.crtfile);
         mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -133,7 +134,7 @@ public class Console {
 
     private void oneStep() {
         try {
-            ctrl.oneStepEval(printFlag, logFlag, this.crtfile);
+            ctrl.oneStepEval(crtPrg, printFlag, logFlag, this.crtfile);
             mainMenu();
         } catch (ControllerException e) {
             System.out.println("Step evaluation error.");
@@ -154,8 +155,9 @@ public class Console {
         IHeap<Integer> h = new MyHeap<>();
         exeStk.push(prgStmt);
 
-        PrgState crtPrg = new PrgState(exeStk, tbl, out, h);
-        ctrl.addPrgState(crtPrg);
+        PrgState newPrg = new PrgState(exeStk, tbl, out, h);
+        ctrl.addPrgState(newPrg);
+        crtPrg = newPrg;
 
         try {
             ctrl.serialize();

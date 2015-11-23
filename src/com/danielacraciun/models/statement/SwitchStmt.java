@@ -1,6 +1,10 @@
 package com.danielacraciun.models.statement;
 
+import com.danielacraciun.models.expression.ArithmExp;
+import com.danielacraciun.models.expression.DivisionByZeroException;
 import com.danielacraciun.models.expression.Exp;
+import com.danielacraciun.models.expression.UninitializedVarException;
+import com.danielacraciun.models.prgstate.PrgState;
 
 public class SwitchStmt implements IStmt {
     private Exp op;
@@ -46,5 +50,15 @@ public class SwitchStmt implements IStmt {
     public String toString() {
         return "SWITCH(" + op.toString() + ") " + " case " + opCase1.toString() + ": " + case1.toString()
                 + " case " + opCase2.toString() + ": " + case2.toString() + " default: " + defaultCase.toString();
+    }
+
+    @Override
+    public PrgState execute(PrgState state) throws DivisionByZeroException, UninitializedVarException {
+        Exp difSwitch = new ArithmExp(op, opCase2, '-');
+        Exp difSwitch2 = new ArithmExp(op, opCase1, '-');
+        IStmt ifSwitch = new IfStmt(difSwitch2, defaultCase, case1);
+        IStmt switchStmt = new IfStmt(difSwitch, ifSwitch, case2);
+        state.getExeStack().push(switchStmt);
+        return state;
     }
 }
