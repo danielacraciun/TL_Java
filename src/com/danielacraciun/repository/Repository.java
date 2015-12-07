@@ -8,9 +8,12 @@ import java.util.Stack;
 
 public class Repository implements IRepository {
     private Stack<PrgState> prgStates;
+    private Integer crtPrgId;
+
 
     public Repository() {
         prgStates = new Stack<>();
+        crtPrgId = 0;
     }
 
     public PrgState getCrtPrg() throws RepositoryException {
@@ -24,6 +27,7 @@ public class Repository implements IRepository {
     }
 
     public void add(PrgState ps) {
+        ps.setId(++crtPrgId);
         prgStates.push(ps);
     }
 

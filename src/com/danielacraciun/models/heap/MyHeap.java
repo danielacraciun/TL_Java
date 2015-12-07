@@ -38,7 +38,7 @@ public class MyHeap<T> implements IHeap<T> {
     public String toString() {
         String s = "Heap: ";
         for (Integer pos : elements.keySet()) {
-            s = pos.toString() + " -> " + elements.get(pos)  + ", " + s;
+            s = s + pos.toString() + " -> " + elements.get(pos)  + "   ";
         }
         return s;
     }

@@ -27,6 +27,7 @@ public class Console {
     private String crtfile;
     private PrgState crtPrg;
 
+
     public Console(Controller ctrl) {
         this.ctrl = ctrl;
         printFlag = true;

@@ -7,10 +7,10 @@ import com.danielacraciun.models.stack.IStack;
 import com.danielacraciun.models.statement.IStmt;
 
 import java.io.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrgState implements Serializable {
-    private static AtomicInteger count = new AtomicInteger(0);
+
+    private static Integer gen_id = 0;
     private Integer state_id;
     private IStack<IStmt> exeStack;
     private Dictionary<String, Integer> symTable;
@@ -24,7 +24,7 @@ public class PrgState implements Serializable {
         symTable = symbol_table;
         out = output;
         heap = prg_heap;
-        state_id = count.incrementAndGet();
+        state_id = gen_id++;
     }
 
     public IStack<IStmt> getExeStack() {
@@ -41,6 +41,9 @@ public class PrgState implements Serializable {
 
     public IHeap<Integer> getHeap() { return heap; }
 
+    public void setId(Integer state_id) {
+        this.state_id = state_id;
+    }
     public String toString() {
 
         return state_id.toString() + ". " + exeStack.toString() + "\n" + symTable.toString() +
