@@ -41,9 +41,6 @@ public class PrgState implements Serializable {
 
     public IHeap<Integer> getHeap() { return heap; }
 
-    public void setId(Integer state_id) {
-        this.state_id = state_id;
-    }
     public String toString() {
 
         return state_id.toString() + ". " + exeStack.toString() + "\n" + symTable.toString() +

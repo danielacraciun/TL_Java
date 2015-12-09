@@ -27,7 +27,6 @@ public class Repository implements IRepository {
     }
 
     public void add(PrgState ps) {
-        ps.setId(++crtPrgId);
         prgStates.push(ps);
     }
 
