@@ -1,6 +1,6 @@
 package com.danielacraciun.models.dictionary;
 
-import java.util.*;
+import java.util.TreeMap;
 
 public class ArrayDictionary<K, V> implements Dictionary<K, V> {
 
@@ -8,6 +8,10 @@ public class ArrayDictionary<K, V> implements Dictionary<K, V> {
 
     public ArrayDictionary() {
         elements = new TreeMap<>();
+    }
+
+    public ArrayDictionary(ArrayDictionary<K, V> table) {
+        elements = (TreeMap<K, V>) table.elements.clone();
     }
 
     @Override

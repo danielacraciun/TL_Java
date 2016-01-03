@@ -1,33 +1,33 @@
 package com.danielacraciun.repository;
 
 import com.danielacraciun.models.prgstate.PrgState;
+
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Repository implements IRepository {
-    private Stack<PrgState> prgStates;
-    private Integer crtPrgId;
-
+    private List<PrgState> prgStates;
 
     public Repository() {
-        prgStates = new Stack<>();
-        crtPrgId = 0;
+        prgStates = new ArrayList<>();
     }
 
-    public PrgState getCrtPrg() throws RepositoryException {
-        try {
-            if (prgStates.size() > 0)
-                return this.prgStates.peek();
-        } catch (IndexOutOfBoundsException e) {
-            throw new RepositoryException();
-        }
-        throw new RepositoryException();
-    }
-
+    @Override
     public void add(PrgState ps) {
-        prgStates.push(ps);
+        prgStates.add(ps);
+    }
+
+    @Override
+    public List<PrgState> getPrgList() {
+        return prgStates;
+    }
+
+    @Override
+    public void setPrgList(List<PrgState> prgs) {
+        prgStates = prgs;
     }
 
     @Override
@@ -35,22 +35,21 @@ public class Repository implements IRepository {
         try {
             FileChannel fc = new RandomAccessFile(filename, "rw").getChannel();
             fc.position(fc.size());
-            fc.write(ByteBuffer.wrap(this.getCrtPrg().toString().getBytes()));
+            fc.write(ByteBuffer.wrap(this.prgStates.toString().getBytes()));
             fc.close();
         } catch (FileNotFoundException e) {
             System.out.println("No file found");
         } catch (IOException e) {
             System.out.println("Cannot close file");
-        } catch (RepositoryException e) {
-            System.out.println("Repository error");
         }
     }
 
+    @Override
     public void serialize() throws RepositoryException {
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("lastPrgState.ser"));
-            out.writeObject(this.getCrtPrg());
+            out.writeObject(prgStates);
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
         } catch (IOException e) {
@@ -65,6 +64,7 @@ public class Repository implements IRepository {
         }
     }
 
+    @Override
     public PrgState deserialize() {
         ObjectInputStream in = null;
         PrgState ps = null;
