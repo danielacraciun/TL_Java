@@ -49,7 +49,7 @@ public class Repository implements IRepository {
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("lastPrgState.ser"));
-            out.writeObject(prgStates);
+            out.writeObject(prgStates.get(0));
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
         } catch (IOException e) {
