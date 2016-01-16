@@ -120,7 +120,7 @@ public class Console {
     private void fullStep() {
         try {
             System.out.println(ctrl.getPrgList().get(0));
-            ctrl.fullStep(printFlag, logFlag, this.crtfile);
+            ctrl.fullStep();
             mainMenu();
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");
@@ -131,7 +131,7 @@ public class Console {
 
     private void oneStep() {
         try {
-            ctrl.oneStepForAllPrg(ctrl.getPrgList(), printFlag, logFlag, this.crtfile);
+            ctrl.oneStepForAllPrg(ctrl.getPrgList());
             mainMenu();
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");

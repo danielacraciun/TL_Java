@@ -55,7 +55,7 @@ public class PrgState implements Serializable {
     public String toString() {
 
         return state_id + ". " + exeStack.toString() + "\n" + symTable.toString() +
-                "\n" + out.toString() + "\n" + heap.toString();
+                "\n" + out.toString() + "\n" + heap.toString() + "\n";
     }
 
     public Boolean isNotCompleted() {
