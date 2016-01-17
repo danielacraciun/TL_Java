@@ -39,8 +39,8 @@ public class Controller {
         repo.serialize();
     }
 
-    public PrgState deserialize() {
-        return repo.deserialize();
+    public void deserialize() {
+        repo.deserialize();
     }
 
     public boolean allPrgsCompleted() {
@@ -114,35 +114,35 @@ public class Controller {
         return repo.getPrgList();
     }
 
-    public void setLogFlag(boolean logFlag) {
-        this.logFlag = logFlag;
-    }
-
-    public void setPrintFlag(boolean printFlag) {
-        this.printFlag = printFlag;
-    }
-
-    public void setSerFlag(boolean serFlag) {
-        this.serFlag = serFlag;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
     public boolean isLogFlag() {
         return logFlag;
+    }
+
+    public void setLogFlag(boolean logFlag) {
+        this.logFlag = logFlag;
     }
 
     public boolean isPrintFlag() {
         return printFlag;
     }
 
+    public void setPrintFlag(boolean printFlag) {
+        this.printFlag = printFlag;
+    }
+
     public boolean isSerFlag() {
         return serFlag;
     }
 
+    public void setSerFlag(boolean serFlag) {
+        this.serFlag = serFlag;
+    }
+
     public String getFilename() {
         return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

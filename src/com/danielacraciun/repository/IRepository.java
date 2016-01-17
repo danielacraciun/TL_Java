@@ -14,5 +14,6 @@ public interface IRepository extends Serializable {
     void writeToFile(String filename);
 
     void serialize() throws RepositoryException;
-    PrgState deserialize();
+
+    void deserialize();
 }

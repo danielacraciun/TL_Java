@@ -65,7 +65,7 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public PrgState deserialize() {
+    public void deserialize() {
         ObjectInputStream in = null;
         PrgState ps = null;
         try {
@@ -82,7 +82,8 @@ public class Repository implements IRepository {
                 } catch (IOException e) {System.err.println(e.getMessage());}
             }
         }
-        return ps;
+        prgStates = new ArrayList<>();
+        prgStates.add(ps);
     }
 
 }

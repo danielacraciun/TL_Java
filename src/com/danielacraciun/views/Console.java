@@ -74,7 +74,6 @@ public class Console {
 
     private void seeInitPrgState() {
         try {
-            System.out.println(ctrl.deserialize().toString());
             mainMenu();
         } catch (ConsoleException e) {
             System.out.println("Wrong option. Try again.");

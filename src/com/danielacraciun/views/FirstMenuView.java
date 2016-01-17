@@ -1,7 +1,6 @@
 package com.danielacraciun.views;
 
 import com.danielacraciun.controller.Controller;
-import com.danielacraciun.models.prgstate.PrgState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -67,8 +66,8 @@ public class FirstMenuView {
 
         Parent root = fxmlLoader.load();
         DeserializeMenuView controller = fxmlLoader.<DeserializeMenuView>getController();
-        PrgState ps = ctrl.deserialize();
-        controller.setPrg(ps);
+        ctrl.deserialize();
+        controller.setPrg(ctrl.getPrgList().get(0));
         controller.setCtrl(ctrl);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Toy Language: Deserialize");
