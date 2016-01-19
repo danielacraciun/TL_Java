@@ -31,6 +31,7 @@ public class ForkStmt implements IStmt {
         Dictionary<String, Integer> newDict = new ArrayDictionary<>(
                 (ArrayDictionary<String, Integer>) state.getSymTable()
         );
-        return new PrgState(newStk, newDict, state.getOut(), state.getHeap(), (state.getState_id() + 1) * 10);
+        return new PrgState(newStk, newDict, state.getOut(), state.getHeap(), state.getFileTable(),
+                (state.getState_id() + 1) * 10);
     }
 }

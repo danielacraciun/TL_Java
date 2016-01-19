@@ -98,14 +98,14 @@ public class Controller {
 
     public String fullStep()
             throws InterruptedException {
-        String s = "";
+        String s = removeCompletedPrg(repo.getPrgList()) + "\n";
         while (true) {
             java.util.List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
             if (prgList.size() == 0) {
                 return s;
             } else {
-                s = s + prgList.toString() + "\n";
                 oneStepForAllPrg(prgList);
+                s = s + prgList.toString() + "\n";
             }
         }
     }

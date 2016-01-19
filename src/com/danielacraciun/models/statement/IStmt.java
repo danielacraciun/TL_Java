@@ -8,5 +8,6 @@ import java.io.Serializable;
 
 public interface IStmt extends Serializable{
     String toString();
-    PrgState execute(PrgState state) throws DivisionByZeroException, UninitializedVarException;
+
+    PrgState execute(PrgState state) throws DivisionByZeroException, UninitializedVarException, FileException;
 }

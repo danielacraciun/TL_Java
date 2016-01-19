@@ -4,6 +4,8 @@ import com.danielacraciun.controller.Controller;
 import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.expression.*;
+import com.danielacraciun.models.filetable.Buffer;
+import com.danielacraciun.models.filetable.FileTable;
 import com.danielacraciun.models.heap.IHeap;
 import com.danielacraciun.models.heap.MyHeap;
 import com.danielacraciun.models.list.ArrayList;
@@ -27,20 +29,20 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class InsertMenuView {
+    private final String[] STMT_CHOICES = {"Compound Statement", "Assign Statement", "Print Statement",
+            "If Statement", "While Statement", "IfThen Statement", "Switch Statement", "Skip Statement",
+            "New Statement", "Write Heap", "Fork Statement", "File Open Statement", "File Write Statement",
+            "File Close Statement"};
+    private final String[] EXPR_CHOICES = {"Arithmetic Expression", "Constant Expression",
+            "Variable Expression", "Compare Expression", "Logical Expression", "Read value", "Read Heap"};
     public TextArea prgArea;
     public Button btnInsert;
     public Button btnReturn;
-    private Controller ctrl;
-    private IStmt crtPrg;
     ChoiceDialog<String> stmtDialog;
     ChoiceDialog<String> expDialog;
     TextInputDialog textDialog;
-
-    private final String[] STMT_CHOICES = {"Compound Statement", "Assign Statement", "Print Statement",
-            "If Statement", "While Statement", "IfThen Statement", "Switch Statement", "Skip Statement",
-            "New Statement", "Write Heap", "Fork Statement"};
-    private final String[] EXPR_CHOICES = {"Arithmetic Expression", "Constant Expression",
-            "Variable Expression", "Compare Expression", "Logical Expression", "Read value", "Read Heap"};
+    private Controller ctrl;
+    private IStmt crtPrg;
 
     public void setCtrl(Controller ctrl) {
         this.ctrl = ctrl;
@@ -176,6 +178,19 @@ public class InsertMenuView {
             if (choice.equals(STMT_CHOICES[10])) {
                 return new ForkStmt(newStatement(dialog, "Statement: "));
             }
+            if (choice.equals(STMT_CHOICES[11])) {
+                String filename = newTextInput(textDialog, "File to open: ");
+                return new OpenFileStmt(filename);
+            }
+            if (choice.equals(STMT_CHOICES[12])) {
+                String filename = newTextInput(textDialog, "File to write to: ");
+                String varname = newTextInput(textDialog, "Variable Name: ");
+                return new WriteFileStmt(filename, varname);
+            }
+            if (choice.equals(STMT_CHOICES[13])) {
+                String filename = newTextInput(textDialog, "File to close: ");
+                return new CloseFileStmt(filename);
+            }
         }
         throw new IOException();
     }
@@ -189,13 +204,14 @@ public class InsertMenuView {
 
         textDialog = new TextInputDialog();
         textDialog.setContentText("Name:");
-        crtPrg = newStatement(stmtDialog, "Choose a statement");
+        crtPrg = newStatement(stmtDialog, "Choose a statement: ");
         IStack<IStmt> exeStk = new ArrayStack<>();
         Dictionary<String, Integer> tbl = new ArrayDictionary<>();
         List<Integer> out = new ArrayList<>();
         IHeap<Integer> h = new MyHeap<>();
+        Dictionary<String, Buffer> file_tbl = new FileTable<>();
         exeStk.push(crtPrg);
-        PrgState newPrg = new PrgState(exeStk, tbl, out, h);
+        PrgState newPrg = new PrgState(exeStk, tbl, out, h, file_tbl);
         prgArea.setText(crtPrg.toString());
         ctrl.addPrgState(newPrg);
         btnInsert.setDisable(true);

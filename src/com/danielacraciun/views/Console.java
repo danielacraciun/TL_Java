@@ -4,6 +4,8 @@ import com.danielacraciun.controller.Controller;
 import com.danielacraciun.models.dictionary.ArrayDictionary;
 import com.danielacraciun.models.dictionary.Dictionary;
 import com.danielacraciun.models.expression.*;
+import com.danielacraciun.models.filetable.Buffer;
+import com.danielacraciun.models.filetable.FileTable;
 import com.danielacraciun.models.heap.IHeap;
 import com.danielacraciun.models.heap.MyHeap;
 import com.danielacraciun.models.list.ArrayList;
@@ -156,9 +158,10 @@ public class Console {
         Dictionary<String, Integer> tbl = new ArrayDictionary<>();
         List<Integer> out = new ArrayList<>();
         IHeap<Integer> h = new MyHeap<>();
+        Dictionary<String, Buffer> ft = new FileTable<>();
         exeStk.push(prgStmt);
 
-        PrgState newPrg = new PrgState(exeStk, tbl, out, h);
+        PrgState newPrg = new PrgState(exeStk, tbl, out, h, ft);
         ctrl.addPrgState(newPrg);
 
         try {
